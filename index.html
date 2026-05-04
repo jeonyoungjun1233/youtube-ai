@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>졸음방지 귀신 버튼</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- shorts-shell은 유튜브 쇼츠처럼 세로 화면을 가운데에 잡아주는 바깥 영역입니다. -->
+    <main class="shorts-shell" aria-label="졸음방지 귀신 버튼">
+      <!-- stage 안에서 모든 화면 연출이 일어납니다. -->
+      <section id="stage" class="stage is-idle">
+        <div class="ambient-lines" aria-hidden="true"></div>
+        <div class="flash-layer" aria-hidden="true"></div>
+        <div class="vignette" aria-hidden="true"></div>
+
+        <!-- 처음 보이는 화면입니다. -->
+        <div id="introPanel" class="intro-panel">
+          <p class="status-text">졸음 감지 중</p>
+          <h1>졸리세요?</h1>
+          <button id="wakeButton" class="primary-button" type="button">
+            <span>졸리면 클릭</span>
+          </button>
+        </div>
+
+        <!-- 버튼 클릭 후 1초 동안 보이는 긴장 화면입니다. -->
+        <div id="warningPanel" class="warning-panel" hidden>
+          <p>뒤에 누구 있어요</p>
+        </div>
+
+        <!-- 귀신 이미지가 나오는 화면입니다. 이미지가 없으면 CSS 대체 화면이 보입니다. -->
+        <div id="ghostScene" class="ghost-scene" hidden>
+          <img id="ghostImage" src="assets/ghost.png" alt="갑자기 나타난 귀신" />
+
+          <div id="ghostFallback" class="ghost-fallback" hidden>
+            <div class="fallback-face" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <b></b>
+            </div>
+          </div>
+        </div>
+
+        <!-- 귀신 등장 2초 뒤에 보이는 마무리 문구와 다시 시작 버튼입니다. -->
+        <div id="resultPanel" class="result-panel" hidden>
+          <h2>잠은 깼는데<br />영혼도 나감</h2>
+          <button id="restartButton" class="secondary-button" type="button">
+            다시 시작
+          </button>
+        </div>
+
+        <!-- 오디오는 사용자가 버튼을 클릭한 뒤에만 재생합니다. -->
+        <audio id="screamSound" src="assets/scream.mp3" preload="auto"></audio>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
