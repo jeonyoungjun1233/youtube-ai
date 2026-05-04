@@ -8,6 +8,7 @@ const ghostFallback = document.querySelector("#ghostFallback");
 const resultPanel = document.querySelector("#resultPanel");
 const wakeButton = document.querySelector("#wakeButton");
 const restartButton = document.querySelector("#restartButton");
+const buttonSound = document.querySelector("#buttonSound");
 const screamSound = document.querySelector("#screamSound");
 
 // setTimeout을 다시 시작할 때 지우기 위해 변수에 담아둡니다.
@@ -21,15 +22,23 @@ ghostImage.addEventListener("error", () => {
 });
 
 // 오디오 파일이 없어도 화면 진행은 멈추지 않게 합니다.
+buttonSound.addEventListener("error", () => {
+  console.warn("assets/button.mp3 파일을 불러오지 못했습니다.");
+});
+
 screamSound.addEventListener("error", () => {
   console.warn("assets/scream.mp3 파일을 불러오지 못했습니다.");
 });
 
 wakeButton.addEventListener("click", startScare);
-restartButton.addEventListener("click", resetExperience);
+restartButton.addEventListener("click", () => {
+  playButtonSound();
+  resetExperience();
+});
 
 function startScare() {
   clearTimers();
+  playButtonSound();
   prepareSoundAfterClick();
 
   // 첫 화면을 숨기고 1초 동안 긴장 문구를 보여줍니다.
@@ -125,6 +134,23 @@ function playScream() {
     }
   } catch (error) {
     console.warn("오디오 재생 중 문제가 생겼습니다.", error);
+  }
+}
+
+function playButtonSound() {
+  try {
+    buttonSound.volume = 0.85;
+    buttonSound.currentTime = 0;
+
+    const playPromise = buttonSound.play();
+
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        console.warn("브라우저가 버튼 사운드 재생을 막았습니다.");
+      });
+    }
+  } catch (error) {
+    console.warn("버튼 사운드 재생 중 문제가 생겼습니다.", error);
   }
 }
 

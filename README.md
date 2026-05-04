@@ -12,6 +12,7 @@
 ├─ script.js
 ├─ assets/
 │  ├─ ghost.png
+│  ├─ button.mp3
 │  └─ scream.mp3
 ├─ vercel.json
 ├─ netlify.toml
@@ -67,7 +68,7 @@ https://your-project-name.vercel.app
 
 ## 주의
 
-- `assets/ghost.png`와 `assets/scream.mp3`는 반드시 같이 올려야 합니다.
+- `assets/ghost.png`, `assets/button.mp3`, `assets/scream.mp3`는 반드시 같이 올려야 합니다.
 - 브라우저 정책 때문에 비명 소리는 사용자가 버튼을 직접 클릭했을 때만 재생됩니다.
 - 카카오톡 공유 미리보기 이미지는 `assets/share-preview.png`를 사용합니다.
 - 카카오톡이 예전 귀신 이미지를 계속 보여주면 캐시 때문일 수 있습니다. 이때는 `https://youtube-ai-inky.vercel.app/?v=2`처럼 주소 뒤에 `?v=2`를 붙여 공유하거나, 카카오 개발자 도구에서 URL 미리보기 캐시를 삭제하면 됩니다.
